@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>New Years Eve Party</title>
+</head>
+<body>
+    <div class="text-center"> 
+        
+        <h1>You're invited to my New Years Eve Party!</h1>
+        <p>Come help me ring in the new year @ViewBag.NewYear!</p>
+        <p>Click below to RSVP</p>
+            
+        @Html.ActionLink("RSVP Now", "rsvpForm", null, new { Class = "btn btn-outline-success btn-lg" })
+        
+    </div>
+</body>
+</html>

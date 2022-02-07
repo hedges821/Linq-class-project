@@ -1,0 +1,41 @@
+﻿@model GiftRequests.Models.Gift
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+    <title>Enter infomation about your gift</title>
+</head>
+<body>
+    <div class="text-center"><h4>Enter your gift information</h4> 
+    </div>
+    <div class="m3">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <label>Name of gift</label>
+                @Html.TextBoxFor(x => x.GiftName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Price:</label>
+                @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Store:</label>
+                @Html.TextBoxFor(x => x.Store, new { @class = "form-control" })
+            </div>
+            <div class="text-center">
+                <input class="btn btn-success" type="submit" value="Submit Gift Info"/>
+            </div>
+        }
+    </div>
+</body>
+</html>

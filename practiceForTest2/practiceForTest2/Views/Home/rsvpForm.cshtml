@@ -1,0 +1,55 @@
+﻿@model practiceForTest2.Models.person
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+    <title>Here's the form</title>
+</head>
+<body>
+    <div class="text-center"><h4>RSVP</h4></div>
+    <div class="m-3">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+        <div class="form-group">
+            <label>Use the form below</label>
+        </div>
+        <div class="form-group">
+            <label>Your First Name:</label>
+            @Html.TextBoxFor(x => x.firstName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Your Last Name:</label>
+            @Html.TextBoxFor(x => x.lastName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Phone:</label>
+            @Html.TextBoxFor(x => x.phone, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Will you attend?</label>
+            @Html.DropDownListFor(x => x.willAttend, new[]
+                {
+                    new SelectListItem() {Text = "Yes I am", Value = bool.TrueString},
+                    new SelectListItem() {Text = "No I'm not", Value = bool.FalseString}
+                }, "Choose an option", new { @class = "form-control" })
+        </div>
+        <div>
+            <input type="submit" value="Submit Sign Up Form" />
+        </div>
+        }
+    </div>
+</body>
+</html>

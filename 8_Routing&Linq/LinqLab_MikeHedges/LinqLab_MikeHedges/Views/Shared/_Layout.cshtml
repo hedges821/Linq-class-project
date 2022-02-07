@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/styles.css" rel="stylesheet" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm">
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    @Html.ActionLink("Employees", "Index")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Sort by Age", "SortByAge")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Employees Older Than 10", "GreaterThanTen")
+                    &nbsp;&nbsp;&nbsp;
+                 </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Summary", "Summary")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

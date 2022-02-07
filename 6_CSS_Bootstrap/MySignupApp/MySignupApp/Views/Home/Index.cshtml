@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Sign up for my app!</title>
+    <style>
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center"> 
+        <h1>Sign up for my app right here!</h1>
+        <p>Don't miss out.  Sign up by @ViewBag.TomorrowDate.</p>
+        <p>Today is @ViewBag.CurrentDate</p>
+        <p>Click below to sign up</p>
+         
+        @Html.ActionLink("Sign-up Page", "SignUpPage", null, new { Class = "btn btn-success" })
+            
+        
+    </div>
+</body>
+</html>

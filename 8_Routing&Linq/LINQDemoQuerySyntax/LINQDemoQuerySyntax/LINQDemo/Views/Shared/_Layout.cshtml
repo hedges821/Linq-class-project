@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+   
+    <!-- Grey with black text -->
+    <nav class="navbar navbar-expand-sm">
+        <center>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    @Html.ActionLink("All Products", "Index")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Price Low to High", "SortedByPrice")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Over $250", "Over250")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Cheap Stuff", "CheapStuff")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Low Stock Items", "LowStock")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Out of Stock", "OutOfStock")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Summary", "Summary")
+                    &nbsp;&nbsp;&nbsp;
+                </li>
+            </ul>
+        </center>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

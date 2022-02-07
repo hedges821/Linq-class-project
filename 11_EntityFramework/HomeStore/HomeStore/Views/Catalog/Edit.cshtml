@@ -1,0 +1,56 @@
+﻿@model HomeStore.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div>
+    @if(Model.Name == null)
+            {
+                <h1>Add Product</h1>
+    }
+    else
+            {
+                <h1>Edit @Model.Name</h1>
+            }
+</div>
+
+@using (Html.BeginForm("Edit", "Catalog"))
+{
+    <div>
+        @Html.HiddenFor(m => m.ProductID)
+        <div class="form-group">
+            <label>Product:</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Brand:</label>
+            @Html.TextBoxFor(x => x.Brand, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Price:</label>
+            @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+        </div>
+
+        <!--This below is a strange overload for DropDownList.  If we put null for selectlist (the second parameter),
+        the method will look for a selectlist in the ViewBag property with the name of the first parameter.
+        However, this method also needs to know what property of the product object should be bound to this
+        drop-down box. So the first parameter also tells the method what property to bind to the dropdown.
+        This requires the name of the ViewBag property to be the name of the property to bind.
+        So we need to name the ViewBag property CategoryID. This seems strange since in one case, CategoryID represents
+        an integer and in the other case, an entire selectlist. But because of the way the overload works, this is
+        what we have to do. -->
+
+        @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+
+    </div>
+    <div>
+        <br /><br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        @Html.ActionLink("Cancel and return to List", "List", null, new { @class = "btn btn-default" })
+    </div>
+}
+

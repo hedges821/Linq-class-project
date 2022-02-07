@@ -1,0 +1,127 @@
+
+Copy and Paste Code for HomeStore
+
+___________________________________________________________
+
+
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using HomeStore.Models;
+using Ninject;
+namespace HomeStore.Infrastructure
+{
+    public class NinjectDependencyResolver : IDependencyResolver
+    {
+        private IKernel kernel;
+        public NinjectDependencyResolver(IKernel kernelParam)
+        {
+            kernel = kernelParam;
+            AddBindings();
+        }
+        public object GetService(Type serviceType)
+        {
+            return kernel.TryGet(serviceType);
+        }
+        public IEnumerable<object> GetServices(Type serviceType)
+        {
+            return kernel.GetAll(serviceType);
+        }
+        private void AddBindings()
+        {
+            // put bindings here
+        }
+    }
+}
+  
+______________________________________________
+
+System.Web.Mvc.DependencyResolver.SetResolver(new Infrastructure.NinjectDependencyResolver(kernel));
+
+_______________________________________________________________
+
+    public class Product
+    {
+        public int ProductID { get; set; }
+        public string Name { get; set; }
+        public string Brand { get; set; }
+        public string Description { get; set; }
+        public string ImagePath { get; set; }
+        public decimal Price { get; set; }
+        public int CategoryID { get; set; }
+        public virtual Category Category { get; set; }
+    }
+
+__________________________________________________________________
+
+
+    public class Category
+    {
+        public int CategoryID { get; set; }
+        public string CategoryName { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
+    }
+
+
+________________________________________________________________
+
+
+           Mock<IProductRepository> mock = new Mock<IProductRepository>();     
+            mock.Setup(m => m.Products).Returns(new List<Product> {
+                new Product { Name = "Ceiling Fan", Price = 129.99M},
+                new Product { Name = "Hammer", Price = 14.99M},
+                new Product { Name = "Box of Nails", Price = 5.99M}
+                });
+             
+            kernel.Bind<IProductRepository>().ToConstant(mock.Object);
+            
+_______________________________________________________________________
+
+You can put your own data in or copy and paste from below a cell at a time.
+
+Ceiling Fan	Harbor Breeze	110.98	2
+Hammer	MyBrand		12.95	3
+Box of Nails	Menards		4.95	1
+
+
+Hardware
+Lighting
+Tools
+
+____________________________________________________________________________
+
+
+<connectionStrings>
+
+    <add name="EFDbContext" connectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=HomeStore;AttachDbFilename=|DataDirectory|\HomeStore.mdf;Integrated Security=True" providerName="System.Data.SqlClient"/>
+
+</connectionStrings>
+
+
+___________________________________________________________________
+
+
+kernel.Bind<IProductRepository>().To<EFProductRepository>();
+
+_______________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

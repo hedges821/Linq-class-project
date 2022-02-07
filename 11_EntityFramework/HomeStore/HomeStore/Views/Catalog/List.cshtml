@@ -1,0 +1,21 @@
+﻿@model IEnumerable<HomeStore.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+@foreach(var p in Model)
+            {
+                <div>
+                    <h3>@p.Name @Html.ActionLink("Edit", "Edit", new { p.ProductID })</h3>
+                    @p.Price.ToString("c")
+                    <br />
+
+                    @p.Category.CategoryName
+                </div>
+            }
+
+<div>
+    <br /><br />
+    @Html.ActionLink("Add a new product", "Create")
+</div>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<LinqLab_MikeHedges.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Employees</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th align="left">Employee ID</th>
+            <th align="left">First Name</th>
+            <th align="left">Last Name</th>
+            <th align="left">Age</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td> @person.EmployeeID</td>
+                <td> @person.FirstName</td>
+                <td> @person.LastName</td>
+                <td> @person.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+﻿@model IEnumerable<LINQDemo.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Products</h2>
+
+<table class="table">
+    <thead><tr><th align="left">Product</th><th align="left">Price</th><th>Items Available</th></tr></thead>
+    <tbody>
+      
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td> @product.Name </td>
+                    <td> @product.Price.ToString("c") </td>
+                    <td> @product.SKU</td>
+                    <td> @product.ItemsAvailable</td>
+                </tr>
+            }
+        </table>

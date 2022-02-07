@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CIS275_Test1.Models.Dealership>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Dealerships</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DealershipName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DealershipName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DealershipID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DealershipID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DealershipID })
+        </td>
+    </tr>
+}
+
+</table>

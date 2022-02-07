@@ -1,0 +1,21 @@
+﻿@model IEnumerable<database.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+@foreach(var p in Model)
+            {
+    <div>
+        <h3>@p.Name</h3>
+        <h3>@p.Price.ToString("c")</h3>
+        <br />
+
+
+
+
+
+    </div>
+
+            }
+

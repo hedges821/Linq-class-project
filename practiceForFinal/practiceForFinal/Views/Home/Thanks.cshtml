@@ -1,0 +1,37 @@
+﻿@model practiceForFinal.Models.Drink
+
+@{
+    Layout = null;
+    bool alcohol = Model.IsItAlcoholic;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Thanks</title>
+</head>
+<body>
+    <div> 
+        <p>Thanks for adding drinks</p>
+        <p>You entered:</p>
+        <p>@Model.Name</p>
+        <p>@Model.Brand</p>
+        <p>@Model.Price.ToString("c")</p>
+        @if (alcohol)
+        {
+            <p>It is alcholic</p>
+        }
+        else
+            {
+                <p>It is not alcoholic</p>
+            }
+        </p>
+      
+        
+
+    </div>
+</body>
+</html>

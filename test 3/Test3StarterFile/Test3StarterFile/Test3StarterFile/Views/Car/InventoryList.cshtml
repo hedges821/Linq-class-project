@@ -1,0 +1,33 @@
+﻿@using Test3StarterFile.Models
+@model IEnumerable<Car>
+@{
+     Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inventory List</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Cars Available</h1>
+
+    <div class="col-xs-8">
+        @foreach (var c in Model)
+        {
+
+            <p class="well">
+
+                <strong>@c.Year @c.CarMake @c.CarModel - @c.Color </strong>
+                @c.Miles.ToString("n0") Miles
+                <strong>@c.Price.ToString("c0")</strong>
+            </p>
+
+        }
+    </div>
+</body>
+</html>
+

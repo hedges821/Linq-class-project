@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CIS275_Test1.Models.Car>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cars</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Make)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mileage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dealership.DealershipName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Make)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Year)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Mileage)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Dealership.DealershipName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.CarID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.CarID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.CarID })
+    </td>
+</tr>
+}
+
+</table>

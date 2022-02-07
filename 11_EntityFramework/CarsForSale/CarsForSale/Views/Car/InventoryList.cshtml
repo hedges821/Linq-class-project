@@ -1,0 +1,19 @@
+﻿@model IEnumerable<CarsForSale.Models.Car>
+
+@{
+    ViewBag.Title = "Cars For Sale";
+}
+
+@foreach (var c in Model)
+            {
+                <div>
+                    <h3>@c.CarMake</h3>
+                    <p>Model:  @c.CarModel</p>
+                    <p>Year:  @c.Year</p>
+                    <p>Miles:  @c.Miles</p>
+                    <p>Color:  @c.Color</p>
+                    <p>Price:  @c.Price.ToString("c")</p>
+                    <br />
+                </div>
+            }
+

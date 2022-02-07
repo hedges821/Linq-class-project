@@ -1,0 +1,46 @@
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task<ActionResult> RsvpForm(GuestResponse guestResponse)
+        {            
+            if (ModelState.IsValid)
+            {
+                var message = new MailMessage();
+                message.To.Add(new MailAddress("ssmit348@jccc.edu"));  // replace with valid value 
+                message.From = new MailAddress("ssmit348@jccc.edu");  // replace with valid value
+                message.Subject = "RSVP Response";
+                if (guestResponse.WillAttend == true)
+                {
+                    message.Body = guestResponse.Name + " is attending the event!";
+                }
+                else
+                {
+                    message.Body = guestResponse.Name + " is unable to attend.";
+                }
+                message.Body = message.Body + "<br/>" + guestResponse.Email + "<br/> " + guestResponse.Phone;
+                message.IsBodyHtml = true;
+                try { 
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "ssmit348@jccc.edu",  // replace with valid value
+                        Password = “????????"  // replace with valid value
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.office365.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+                    return View("Thanks", guestResponse);
+                }
+                }
+                catch
+                {
+                    return View("EmailNotSent");
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }

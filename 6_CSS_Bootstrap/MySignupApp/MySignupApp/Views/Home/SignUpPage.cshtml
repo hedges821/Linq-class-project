@@ -1,0 +1,56 @@
+﻿@model MySignupApp.Models.Person
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+    <title>Sign Up Page</title>
+
+</head>
+<body>
+    <div class="text-center"><h4>RSVP</h4></div>
+    <div class="m-3">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <label>Your First Name:</label>
+                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Your Last Name:</label>
+                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Your Email:</label>
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Your Phone:</label>
+                @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Your Favorite Color:</label>
+                @Html.TextBoxFor(x => x.FavoriteColor, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>Are you 18 or over?</label>
+                @Html.DropDownListFor(x => x.IsEighteen, new[] {
+                    new SelectListItem() {Text = "Yes, I am", Value = bool.TrueString},
+                    new SelectListItem() {Text = "No, I'm not", Value = bool.FalseString}
+                    }, "Choose an option", new { @class = "form-control" })
+            </div>
+            <div class="text-center">
+                <input class="btn btn-success" type="submit" value="Submit Sign Up Form" />
+            </div>
+        }
+    </div>
+</body>
+</html>

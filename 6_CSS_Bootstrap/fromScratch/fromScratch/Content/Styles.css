@@ -1,0 +1,21 @@
+﻿.input-validation-error{
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors{
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid{
+    display: none;
+}
+
+#rsvpButton{
+    margin-top: 1.5%;
+}
+
+label{
+    margin-top: 1.5%;
+}

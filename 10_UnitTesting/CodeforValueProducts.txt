@@ -1,0 +1,20 @@
+
+            decimal fullPrice = products.Sum(p => p.Price);
+
+            if (fullPrice < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            else if (fullPrice > 200)
+            {
+                return fullPrice * 0.9M;
+            }
+            else if (fullPrice > 100 && fullPrice <= 200)
+            {
+                return fullPrice * 0.95M;
+            }
+            else
+            {
+                return fullPrice;
+            }            
+      

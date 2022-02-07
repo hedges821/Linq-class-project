@@ -1,0 +1,17 @@
+    public class Book
+    {
+        public int BookID { get; set; }
+        public string Title { get; set; }
+        public int PublisherID { get; set; }
+        public decimal Price { get; set; }
+
+        public virtual Publisher Publisher { get; set; }
+    }
+
+    public class Publisher
+    {
+        public int PublisherID { get; set; }
+        public string PublisherName { get; set; }
+
+        public virtual ICollection<Book> Books { get; set; }
+    }

@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Practice for my final in CIS 275</title>
+</head>
+<body>
+    <div> 
+        <h1>This is for practice</h1>
+        <p>Today's date is @ViewBag.CurrentDate</p>
+
+        <p>I'm going to put an action link below</p>
+        @Html.ActionLink("Click here for practice", "IndexLink", null, new {Class = "btn btn-success"})
+    </div>
+</body>
+</html>

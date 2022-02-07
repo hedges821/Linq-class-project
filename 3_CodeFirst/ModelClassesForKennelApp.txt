@@ -1,0 +1,27 @@
+    public class Pet
+    {
+        public int PetID { get; set; }
+        public string Name { get; set; }
+        public string Age { get; set; }
+        public int PetTypeID { get; set; }
+        public int OwnerID { get; set; }
+        public virtual PetType PetType { get; set; }
+        public virtual Owner Owner { get; set; }
+    }
+
+    public class Owner
+    {
+        public int OwnerID { get; set; }
+        [DisplayName("Owner")]
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public virtual ICollection<Pet> Pets { get; set; }
+    }
+
+    public class PetType
+    {
+        public int PetTypeID { get; set; }
+        [DisplayName("Pet Type")]
+        public string PetTypeName { get; set; }
+        public virtual ICollection<Pet> Pets { get; set; }
+    }

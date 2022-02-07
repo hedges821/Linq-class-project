@@ -1,0 +1,158 @@
+        
+
+	public ActionResult Edit(int productId)
+        {
+            Product product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
+            ViewBag.CategoryID = new SelectList(repository.Categories, "CategoryID", "CategoryName", product.CategoryID);
+            return View(product);
+        }
+
+________________________________
+
+
+        @using (Html.BeginForm())
+        {
+            <div>
+ 		@Html.HiddenFor(m => m.ProductID)
+                <div class="form-group">
+                    <label>Product:</label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Brand:</label>
+                    @Html.TextBoxFor(x => x.Brand, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Price:</label>
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                </div>
+
+            <!--This below is a strange overload for DropDownList.  If we put null for selectlist (the second parameter), 
+            the method will look for a selectlist in the ViewBag property with the name of the first parameter. 
+            However, this method also needs to know what property of the product object should be bound to this
+            drop-down box. So the first parameter also tells the method what property to bind to the dropdown. 
+            This requires the name of the ViewBag property to be the name of the property to bind. 
+            So we need to name the ViewBag property CategoryID. This seems strange since in one case, CategoryID represents
+            an integer and in the other case, an entire selectlist. But because of the way the overload works, this is
+            what we have to do. -->
+
+                @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+
+            </div>
+            <div>
+		<br /><br />
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Cancel and return to List", "List", null, new { @class = "btn btn-default" })
+            </div>
+        }
+
+________________________________
+
+
+        public void SaveProduct(Product product)
+        {
+      
+                Product dbEntry = context.Products.Find(product.ProductID);
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = product.Name;
+                    dbEntry.Description = product.Description;
+                    dbEntry.Price = product.Price;
+                    dbEntry.Category = product.Category;
+                }
+            
+            context.SaveChanges();
+        }
+
+
+
+________________________________
+
+
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveProduct(product);
+                TempData["message"] = string.Format("{0} has been saved", product.Name);
+                return RedirectToAction("List");
+            }
+            else
+            {
+                // there is something wrong with the data values                
+                return View(product);
+            }
+        }
+
+
+____________________________________________________
+
+
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+
+
+__________________________________________
+
+
+
+        public ActionResult Create()
+        {
+            ViewBag.CategoryID = new SelectList(repository.Categories, "CategoryID", "CategoryName");
+            return View("Edit", new Product());
+        }
+
+
+
+_____________________________________________
+
+
+    @if (@Model.Name == null)
+    {
+        <h1>Add Product</h1>
+    }
+    else
+    {
+        <h1> Edit @Model.Name</h1>
+    }
+
+__________________________________________
+
+
+        public Product DeleteProduct(int productID)
+        {
+            Product dbEntry = context.Products.Find(productID);
+            if (dbEntry != null) 
+		{ 
+			context.Products.Remove(dbEntry);
+                	context.SaveChanges();
+            	}
+            return dbEntry;
+        }
+
+
+
+___________________________________________
+
+
+        public ActionResult Delete(int productId)
+        {
+            Product deletedProduct = repository.DeleteProduct(productId);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = string.Format("{0} was deleted", deletedProduct.Name);
+            }
+            return RedirectToAction("List");
+        }
+
+
+
+
+
